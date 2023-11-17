@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  main: 
+    container_name: main 
+    build : 
+      context : . 
+    env_file: 
+      - .env 
+    ports: 
+      - "5135:5135"
