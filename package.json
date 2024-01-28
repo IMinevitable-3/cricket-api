@@ -1,0 +1,17 @@
+{
+  "name": "cricbash",
+  "version": "1.0.0",
+  "description": "``` docker-compose up --build -d ```",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^21.9.0",
+    "puppeteer-core": "^21.9.0"
+  }
+}

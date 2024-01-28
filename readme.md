@@ -17,7 +17,7 @@ docker  stop main
 ```
 
 <ol>
-<li> live score</li>
+<!-- <li> live score</li> -->
 <li> team schedule</li>
 <li> player stats</li>
 <li>latest news </li>
