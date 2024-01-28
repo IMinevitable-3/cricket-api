@@ -4,13 +4,11 @@ export class BaseScraper {
   constructor() {
     this.browser = null;
     this.page = null;
-    this.role = null;
   }
 
-  async initialize(role) {
+  async initialize() {
     this.browser = await puppeteer.launch({ headless: "new" });
     this.page = await this.browser.newPage();
-    this.role = role;
   }
 
   async scrape() {

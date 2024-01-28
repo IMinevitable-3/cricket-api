@@ -1,7 +1,14 @@
-import { MenRank } from "./pages/rankings/batting.js";
-
+import { MenRank } from "./pages/rankings/batsmen.js";
+import { WomenRank } from "./pages/rankings/batswomen.js";
+import { TeamRank } from "./pages/rankings/teams.js";
 (async () => {
   const scraper = new MenRank();
-  await scraper.initialize("bowling"); // batting , bowling , all-rounder
+  await scraper.initialize("all-rounder"); // batting , bowling , all-rounder
   await scraper.scrape();
+  // const scraper = new WomenRank();
+  // await scraper.initialize("all-rounder");
+  // await scraper.scrape();
+  // const scraper = new TeamRank();
+  // await scraper.initialize("men");
+  // await scraper.scrape();
 })();
