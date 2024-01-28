@@ -41,6 +41,7 @@ class Matches(APIcaller):
                 result.append(match_info)
             except Exception as e:
                 pass
+        print(result)
         return result
 
     def jsonConversion(self, content: list) -> dict:
