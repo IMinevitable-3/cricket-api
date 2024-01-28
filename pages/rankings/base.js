@@ -3,3 +3,4 @@ export const MEN_URL =
 export const WOMEN_URL =
   "https://www.cricbuzz.com/cricket-stats/icc-rankings/women/";
 export let TEAM_URL = "https://www.cricbuzz.com/cricket-stats/icc-rankings/";
+export const NEWS_URL = "https://www.cricbuzz.com/cricket-news";
