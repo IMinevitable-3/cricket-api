@@ -19,10 +19,10 @@ docker  stop main
 <ol>
 <!-- <li> live score</li> -->
 <li> team schedule</li>
-<li> player stats</li>
-<li>latest news </li>
-<li> rankings</li>
+<!-- <li> player stats</li> -->
+<!-- <li>latest news </li> -->
+<!-- <li> rankings</li> -->
 <li> team squad</li>
-<li> blog</li>
+<!-- <li> blog</li> -->
 
 </ol>

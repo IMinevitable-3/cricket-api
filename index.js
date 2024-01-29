@@ -2,6 +2,7 @@ import { MenRank } from "./pages/rankings/batsmen.js";
 import { WomenRank } from "./pages/rankings/batswomen.js";
 import { TeamRank } from "./pages/rankings/teams.js";
 import { News } from "./pages/news.js";
+import { Player } from "./pages/player_stats.js";
 (async () => {
   // const scraper = new MenRank();
   // await scraper.initialize("all-rounder"); // batting , bowling , all-rounder
@@ -12,8 +13,10 @@ import { News } from "./pages/news.js";
   // const scraper = new TeamRank();
   // await scraper.initialize("men");
   // await scraper.scrape();
+  // const scraper = new News();
+  // await scraper.initialize();
+  // await scraper.scrape();
 
-  const scraper = new News();
-  await scraper.initialize();
-  await scraper.scrape();
+  const scraper = new Player("hardik-pandya");
+  scraper.scrapeProfile(625371);
 })();
