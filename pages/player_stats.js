@@ -73,12 +73,44 @@ export class Player {
   async scrapeProfile(playerId) {
     `returns stats of player based on ID extracted by above function (batting , bowling and recent matches)`;
     const profileUrl = PROFILE_URL + `${this.name}-${playerId}`;
+    // const profileUrl = PROFILE_URL; // testing URL
+
     const browser = await puppeteer.launch({ headless: "new" });
     try {
       const page = await browser.newPage();
       await page.goto(profileUrl);
 
-      // console.log(`Current URL: ${page.url()}`);
+      console.log(`Current URL: ${page.url()}`);
+      const playerInfo = await page.evaluate(() => {
+        const grid = document.querySelector(
+          ".ds-grid.lg\\:ds-grid-cols-3.ds-grid-cols-2.ds-gap-4.ds-mb-8"
+        );
+
+        if (!grid) {
+          console.error("Grid element not found");
+          return null;
+        }
+
+        const items = Array.from(grid.children);
+        const data = {};
+
+        items.forEach((item) => {
+          const labelElement = item.querySelector(
+            "p.ds-text-tight-s.ds-font-regular.ds-uppercase.ds-text-typo-mid3"
+          );
+          const valueElement = item.querySelector(
+            "span.ds-text-title-xs.ds-font-bold.ds-text-typo p"
+          );
+
+          if (labelElement && valueElement) {
+            const label = labelElement.innerText.trim();
+            const value = valueElement.innerText.trim();
+            data[label] = value;
+          }
+        });
+
+        return data;
+      });
 
       const data = await page.evaluate(() => {
         const tables = Array.from(document.querySelectorAll("table"));
@@ -113,8 +145,8 @@ export class Player {
 
         return allData;
       });
-
-      console.log(data);
+      data.push({ playerInfo: playerInfo });
+      return data;
     } catch (e) {
       console.log(e);
     } finally {
