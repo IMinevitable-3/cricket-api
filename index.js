@@ -18,5 +18,5 @@ import { Player } from "./pages/player_stats.js";
   // await scraper.scrape();
 
   const scraper = new Player("hardik-pandya");
-  scraper.scrapeProfile(625371);
+  await scraper.scrapeProfile(625371);
 })();

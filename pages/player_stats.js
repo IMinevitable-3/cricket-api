@@ -58,7 +58,7 @@ export class Player {
 
         if (playerIdMatch) {
           const playerId = playerIdMatch[1];
-          //   await this.scrapeProfile(playerId);
+          await this.scrapeProfile(playerId);
         } else {
           console.error("Unable to extract player ID from the link");
         }
@@ -71,34 +71,54 @@ export class Player {
   }
 
   async scrapeProfile(playerId) {
-    const profileUrl = `https://www.espncricinfo.com/cricketers/${this.name}-${playerId}`;
-    const browser = await puppeteer.launch({ headless: false });
-    const page = await browser.newPage();
-
-    const stats = await page.evaluate(() => {
-      const Tables = document.querySelectorAll(
-        ".ds-w-full.ds-table.ds-table-md.ds-table-bordered.ds-border-collapse.ds-border.ds-border-line.ds-table-auto.ds-overflow-scroll"
-      );
-
-      Tables.forEach((table) => {
-        const theadElement = table.querySelector(
-          ".ds-bg-fill-content-alternate.ds-text-left.ds-text-right"
-        );
-        const thElements = theadElement.querySelectorAll("th");
-
-        const thContentArray = Array.from(thElements).map((thElement) =>
-          thElement.textContent.trim()
-        );
-
-        console.log(thContentArray);
-      });
-    });
-
+    `returns stats of player based on ID extracted by above function (batting , bowling and recent matches)`;
+    const profileUrl = PROFILE_URL + `${this.name}-${playerId}`;
+    const browser = await puppeteer.launch({ headless: "new" });
     try {
+      const page = await browser.newPage();
       await page.goto(profileUrl);
+
+      // console.log(`Current URL: ${page.url()}`);
+
+      const data = await page.evaluate(() => {
+        const tables = Array.from(document.querySelectorAll("table"));
+
+        console.log(`Number of tables: ${tables.length}`);
+
+        const allData = [];
+
+        tables.forEach((table) => {
+          const headerColumns = Array.from(
+            table.querySelectorAll("thead tr th")
+          );
+          const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+          console.log(`Number of rows in the current table: ${rows.length}`);
+
+          const tableData = rows.map((row) => {
+            const columns = Array.from(row.querySelectorAll("td"));
+
+            const rowData = {};
+            columns.forEach((column, index) => {
+              const headerText = headerColumns[index].innerText.trim();
+              const columnText = column.innerText.trim();
+              rowData[headerText] = columnText;
+            });
+
+            return rowData;
+          });
+
+          allData.push(tableData);
+        });
+
+        return allData;
+      });
+
+      console.log(data);
     } catch (e) {
       console.log(e);
+    } finally {
+      await browser.close();
     }
-    console.log(profileUrl);
   }
 }

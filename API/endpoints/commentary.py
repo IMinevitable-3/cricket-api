@@ -13,9 +13,10 @@ class Commentary:
     def getScore(self, id: int) -> dict:
         try:
             resp = requests.get(
-                # COMMENTARY_URL + str(id), headers={"User-Agent": Headers().user_agent()}
-                COMMENTARY_URL,
-                headers={"User-Agent": Headers().user_agent()},
+                COMMENTARY_URL + str(id),
+                headers={"User-Agent": Headers().user_agent()}
+                # COMMENTARY_URL,
+                # headers={"User-Agent": Headers().user_agent()},
             )
             print(resp.text)
             if resp.status_code != 200:
@@ -32,4 +33,4 @@ class Commentary:
         return {}
 
 
-print(Commentary().getScore(86977))
+print(Commentary().getScore(88172))
