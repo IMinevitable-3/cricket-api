@@ -68,7 +68,7 @@ export class TeamRank extends BaseScraper {
         });
         return result;
       }, {});
-
+      return groupedTeams;
       console.log("Grouped Team Information:", groupedTeams);
     } catch (error) {
       console.error("Error during scraping:", error);

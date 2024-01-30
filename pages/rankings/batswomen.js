@@ -78,8 +78,8 @@ export class WomenRank extends BaseScraper {
         return result;
       }, {});
 
-      console.log("Grouped Player Information:", groupedPlayers);
       return groupedPlayers;
+      console.log("Grouped Player Information:", groupedPlayers);
     } catch (error) {
       console.error("Error during scraping:", error);
     } finally {

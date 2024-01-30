@@ -58,6 +58,7 @@ export class Player {
 
         if (playerIdMatch) {
           const playerId = playerIdMatch[1];
+          return playerId;
           await this.scrapeProfile(playerId);
         } else {
           console.error("Unable to extract player ID from the link");

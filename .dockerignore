@@ -4,3 +4,8 @@ docker-compose.yml
 readme.md
 .gitignore
 .env
+env
+__pycache__
+saviour.html
+saviour.json
+node_modules

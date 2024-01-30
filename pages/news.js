@@ -51,7 +51,7 @@ export class News extends BaseScraper {
 
         return items;
       });
-
+      return newsItems;
       console.log(newsItems);
     } catch (error) {
       console.error("Error during scraping:", error);

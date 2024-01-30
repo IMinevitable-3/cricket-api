@@ -74,13 +74,13 @@ export class MenRank extends BaseScraper {
           name: player.name,
           country: player.country,
           imageUrl: player.imageUrl,
-          rating: player.rating,
+          // rating: player.rating,
         });
         return result;
       }, {});
 
-      console.log("Grouped Player Information:", groupedPlayers);
       return groupedPlayers;
+      console.log("Grouped Player Information:", groupedPlayers);
     } catch (error) {
       console.error("Error during scraping:", error);
     } finally {
